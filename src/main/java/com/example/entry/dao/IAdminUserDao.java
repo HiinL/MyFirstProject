@@ -12,10 +12,10 @@ public interface IAdminUserDao extends BaseMapper<AdminUserVO> {
 
     AdminUserVO queryByAccount(@Param("account") String account);
 
-    int del(@Param("id") String id);
+    int delById(@Param("id") String id);
 
-    int update(@Param("id") String id,@Param("name") String name,@Param("pwd") String pwd
-            ,@Param("account") String account);
+    int updateUser(@Param("id") String id, @Param("name") String name, @Param("pwd") String pwd
+            , @Param("account") String account);
 
     int add(AdminUserVO vo);
 }

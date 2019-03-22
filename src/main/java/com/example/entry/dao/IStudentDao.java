@@ -15,10 +15,10 @@ public interface IStudentDao extends BaseMapper<StudentVO> {
 
     List<StudentVO> queryStudentList(@Param("qq") String qq, @Param("offset") int offset, @Param("size") int size);
 
-    int del(@Param("id") String id);
+    int delById(@Param("id") String id);
 
-    int update(@Param("id") String id,@Param("name") String name,@Param("phone") String phone
-            ,@Param("weChat") String weChat,@Param("qq") String qq,@Param("photoUrl") String photoUrl);
+    int updateStudent(@Param("id") String id, @Param("name") String name, @Param("phone") String phone
+            , @Param("weChat") String weChat, @Param("qq") String qq, @Param("photoUrl") String photoUrl);
 
     int add(StudentVO vo);
 }
