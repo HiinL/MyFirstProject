@@ -4,9 +4,9 @@ spring:
   datasource: #连接池配置
     #外网测试库存datasource
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://rm-8vbumz16s1pa282241o.mysql.zhangbei.rds.aliyuncs.com:3306/entry
-    username: test_juwen
-    password: Juwenkeji20181015
+    url: jdbc:mysql://url:3306/entry
+    username: name
+    password: pwd
 
     #############数据库连接池###########
     type: org.apache.commons.dbcp2.BasicDataSource
