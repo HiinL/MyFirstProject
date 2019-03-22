@@ -7,11 +7,11 @@
         VALUES( #{id} ,#{name},#{account},#{pwd},NOW() )
     </insert>
 
-    <delete id="del" parameterType="string">
+    <delete id="delById" parameterType="string">
         DELETE FROM ADMIN_USER WHERE ID = #{id}
     </delete>
 
-    <update id="update">
+    <update id="updateUser">
         UPDATE ADMIN_USER SET
            NAME=#{name}
         <if test="pwd!=''">

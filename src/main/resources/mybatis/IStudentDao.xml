@@ -21,11 +21,11 @@
         ,NOW() ,#{createId} )
     </insert>
 
-    <delete id="del" parameterType="string">
+    <delete id="delById" parameterType="string">
         DELETE FROM STUDENT WHERE ID = #{id}
     </delete>
 
-    <update id="update">
+    <update id="updateStudent">
         UPDATE STUDENT SET
         ID=#{id}
         <if test="name!=null">
