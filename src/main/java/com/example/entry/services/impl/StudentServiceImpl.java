@@ -1,6 +1,5 @@
 package com.example.entry.services.impl;
 
-import com.example.entry.dao.IAdminUserDao;
 import com.example.entry.dao.IStudentDao;
 import com.example.entry.pojo.vo.StudentVO;
 import com.example.entry.services.IStudentService;
@@ -33,12 +32,12 @@ public class StudentServiceImpl  implements IStudentService {
 
     @Override
     public int del(String id) {
-        return studentDao.del(id);
+        return studentDao.delById(id);
     }
 
     @Override
     public int update(String id, String name, String phone, String weChat, String qq, String photoUrl) {
-        return studentDao.update(id, name, phone, weChat, qq, photoUrl);
+        return studentDao.updateStudent(id, name, phone, weChat, qq, photoUrl);
     }
 
     @Override

@@ -5,8 +5,6 @@ import com.example.entry.pojo.vo.AdminUserVO;
 import com.example.entry.services.IAdminUserService;
 import com.example.entry.util.MD5CoderUtils;
 import com.example.entry.util.ResultUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -67,7 +65,7 @@ public class AdminUserServiceImpl implements IAdminUserService {
         if (!vo.getPwd().equals(str1)) {
             return ResultUtil.LOGIN_PASSWORD_ERROR();
         }else {
-            int result = adminUserDao.update(vo.getId(),vo.getName(),str2,vo.getAccount());
+            int result = adminUserDao.updateUser(vo.getId(),vo.getName(),str2,vo.getAccount());
             if (result > 0) {
                 return ResultUtil.OK();
             } else {
