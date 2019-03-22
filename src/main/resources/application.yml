@@ -1,0 +1,50 @@
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8 #设置Tomcat编码
+    min-spare-threads: 30
+    max-threads: 1000
+  context-path: /
+  max-http-header-size: 100000000
+
+
+spring:
+  # 环境配置 dev：开发环境 | prod：生产环境
+  profiles:
+    active: dev
+  freemarker:
+    prefix: classpath:/templates/
+    template-loader-path: classpath:/templates/
+    content-type: text/html
+  application:
+    name: entry
+  mvc:
+    favicon:
+      enabled: true
+
+mybatis:
+  type-aliases-package: com.example.entry.pojo #配置.xml文件路径
+  mapper-locations: classpath:mybatis/*.xml #配置模型路径
+
+mybatis-plus: #配置mybatis-plus#######
+  # 如果是放在src/main/java目录下 classpath:/com/yourpackage/*/mapper/*Mapper.xml
+  # 如果是放在resource目录 classpath:/mapper/*Mapper.xml
+  mapper-locations: classpath:mybatis/*.xml
+  type-aliases-package: com.example.entry.pojo
+  global-config:
+    db-config:
+      logic-delete-value: 1 #逻辑删除配置 (删除)
+      logic-not-delete-value: 0 #辑删除配置（不删除）
+      table-underline: true
+  configuration:
+    map-underscore-to-camel-case: true #配置返回数据库(column下划线命名&&返回java实体是驼峰命名)，自动匹配无需as（没开启这个，SQL需要写as： select user_id as userId）
+
+
+
+security: ######Swagger2 security 安全性######
+  basic:
+    path: /
+    enabled: false
+  user:
+    name: entry
+    password: 123

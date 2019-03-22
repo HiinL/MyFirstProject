@@ -1,0 +1,20 @@
+# 环境配置
+spring:
+  #############数据库###########
+  datasource: #连接池配置
+    #外网测试库存datasource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://rm-8vbumz16s1pa282241o.mysql.zhangbei.rds.aliyuncs.com:3306/entry
+    username: test_juwen
+    password: Juwenkeji20181015
+
+    #############数据库连接池###########
+    type: org.apache.commons.dbcp2.BasicDataSource
+    dbcp2:
+      initial-size: 1 #初始化连接:连接池启动时创建的初始化连接数量
+      max-active: 50 #最大活动连接:连接池在同一时间能够分配的最大活动连接的数量, 如果设置为非正数则表示不限制
+      max-idle: 20 #最大空闲连接:连接池中容许保持空闲状态的最大连接数量,超过的空闲连接将被释放,如果设置为负数表示不限制
+      min-idle: 1 #最小空闲连接:连接池中容许保持空闲状态的最小连接数量,低于这个数量将创建新的连接,如果设置为0则不创建
+      max-wait-millis: 10000 #最大等待时间:当没有可用连接时,连接池等待连接被归还的最大时间(以毫秒计数),超过时间则抛出异常,如果设置为-1表示无限等待
+      validation-query: SELECT 1 #SQL查询,用来验证从连接池取出的连接,在将连接返回给调用者之前.如果指定,则查询必须是一个SQL SELECT并且必须返回至少一行记录
+      connection-properties: characterEncoding=utf8 #当建立新连接时被发送给JDBC驱动的连接参数，格式必须是 [propertyName=property;]。注意：参数user/password将被明确传递，所以不需要包括在这里。

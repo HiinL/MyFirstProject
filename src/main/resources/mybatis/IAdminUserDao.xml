@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.entry.dao.IAdminUserDao">
+
+    <insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="com.example.entry.pojo.vo.AdminUserVO">
+        INSERT INTO ADMIN_USER(ID, NAME,ACCOUNT,PWD,CREATE_TIME)
+        VALUES( #{id} ,#{name},#{account},#{pwd},NOW() )
+    </insert>
+
+    <delete id="del" parameterType="string">
+        DELETE FROM ADMIN_USER WHERE ID = #{id}
+    </delete>
+
+    <update id="update">
+        UPDATE ADMIN_USER SET
+           NAME=#{name}
+        <if test="pwd!=''">
+            , PWD=#{pwd}
+        </if>
+        <if test="account!=''">
+            , ACCOUNT=#{account}
+        </if>
+        WHERE ID=#{id}
+    </update>
+
+    <select id="queryByAccount" resultType="com.example.entry.pojo.vo.AdminUserVO">
+        SELECT * FROM ADMIN_USER WHERE ACCOUNT=#{account}
+    </select>
+
+
+</mapper>
