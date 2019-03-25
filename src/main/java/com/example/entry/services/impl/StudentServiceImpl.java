@@ -8,7 +8,9 @@ import com.example.entry.util.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -25,9 +27,13 @@ public class StudentServiceImpl  implements IStudentService {
     IStudentDao studentDao;
 
     @Override
-    public List<StudentVO> queryStudentList(String qq, int pageIndex, int pageSize) {
-
-        return studentDao.queryStudentList(qq, CommonUtil.getPageOffset(pageIndex,pageSize), pageSize);
+    public Map<String,Object> queryStudentList(String qq, int pageIndex, int pageSize) {
+        Map<String,Object> map = new HashMap<>();
+        List<StudentVO> vos =studentDao.queryStudentList(qq, CommonUtil.getPageOffset(pageIndex,pageSize), pageSize);
+       int pageCount = studentDao.countByQQ(qq);
+        map.put("data",vos);
+        map.put("pageCount",pageCount);
+        return map;
     }
 
     @Override
@@ -41,7 +47,7 @@ public class StudentServiceImpl  implements IStudentService {
     }
 
     @Override
-    public String add(String name, String phone, String weChat, String createId)
+    public String add(String name, String phone, String weChat, String createId,String qq, String photoUrl)
     {
         StudentVO vo = new StudentVO();
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
@@ -49,6 +55,8 @@ public class StudentServiceImpl  implements IStudentService {
         vo.setName(name);
         vo.setPhone(phone);
         vo.setWeChat(weChat);
+        vo.setQq(qq);
+        vo.setPhotoUrl(photoUrl);
         vo.setCreateId(createId);
          studentDao.add(vo);
         return ResultUtil.OK(vo);

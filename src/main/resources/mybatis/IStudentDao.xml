@@ -3,22 +3,8 @@
 <mapper namespace="com.example.entry.dao.IStudentDao">
 
     <insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="com.example.entry.pojo.vo.StudentVO">
-        INSERT INTO STUDENT(ID, NAME,PHONE,WE_CHAT
-        <if test="qq!=null">
-            , QQ
-        </if>
-        <if test="photoUrl!=null">
-            , PHOTO_URL
-        </if>
-        ,CREATE_TIME ,CREATE_ID )
-        VALUES( #{id}, #{name},#{phone},#{weChat}
-        <if test="qq!=null">
-            ,#{qq}
-        </if>
-        <if test="photoUrl!=null">
-            ,#{photoUrl}
-        </if>
-        ,NOW() ,#{createId} )
+        INSERT INTO STUDENT(ID, NAME,PHONE,WE_CHAT,QQ,PHOTO_URL,CREATE_TIME ,CREATE_ID )
+        VALUES( #{id}, #{name},#{phone},#{weChat} ,#{qq},#{photoUrl},NOW() ,#{createId} )
     </insert>
 
     <delete id="delById" parameterType="string">
@@ -57,5 +43,13 @@
         <if test="offset >= 0">
             LIMIT #{offset}, #{size}
         </if>
+    </select>
+
+    <select id="countByQQ" resultType="java.lang.Integer" >
+    SELECT COUNT(ID) FROM STUDENT
+    WHERE  1=1
+    <if test="qq!=null">
+        and  T.QQ LIKE CONCAT('%','${qq}','%')
+    </if>
     </select>
 </mapper>

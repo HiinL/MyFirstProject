@@ -23,13 +23,20 @@ public class ImageController {
     @Autowired
     IStudentService studentService;
 
-    @RequestMapping(value = "/uploadStudentPicFace")
-    public String uploadStudentPicFaceToOss(MultipartFile file, String id){
+    @RequestMapping(value = "/updateStudentPicFace")
+    public String updateStudentPicFace(MultipartFile file, String id){
         OSSClient ossClient = AliyunOssClientUtil.getOSSClient();
         String url = AliyunOssClientUtil.saveImg(file, ossClient);
         //组织对象
         studentService.update(id, null, null, null, null, url);
 
         return ResultUtil.OK();
+    }
+
+
+    @RequestMapping(value = "/uploadStudentPicFace")
+    public String uploadStudentPicFaceToOss(MultipartFile file){
+        OSSClient ossClient = AliyunOssClientUtil.getOSSClient();
+        return AliyunOssClientUtil.saveImg(file, ossClient);
     }
 }

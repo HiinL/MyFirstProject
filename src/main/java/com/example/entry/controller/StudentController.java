@@ -31,9 +31,10 @@ public class StudentController {
     public String addStudent( @RequestParam("name") String name
             , @RequestParam("phone") String phone
             , @RequestParam("weChat") String weChat
-            , @RequestParam("createId") String createId){
+            , @RequestParam("createId") String createId
+            , @RequestParam("qq") String qq,@RequestParam("photoUrl") String photoUrl){
 
-        return studentService.add(name,phone,weChat,createId);
+        return studentService.add(name,phone,weChat,createId,qq,photoUrl);
     }
 
     /**

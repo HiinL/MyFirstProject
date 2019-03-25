@@ -21,4 +21,6 @@ public interface IStudentDao extends BaseMapper<StudentVO> {
             , @Param("weChat") String weChat, @Param("qq") String qq, @Param("photoUrl") String photoUrl);
 
     int add(StudentVO vo);
+
+    int countByQQ(@Param("qq") String qq);
 }
