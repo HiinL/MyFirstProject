@@ -50,7 +50,10 @@
     <select id="queryStudentList" resultType="com.example.entry.pojo.vo.StudentVO">
         SELECT T.*,AU.NAME AS createName FROM STUDENT T
         LEFT JOIN ADMIN_USER AU ON T.CREATE_ID = AU.ID
-        WHERE T.QQ LIKE CONCAT('%','${qq}','%')
+        WHERE  1=1
+        <if test="qq!=null">
+            and  T.QQ LIKE CONCAT('%','${qq}','%')
+        </if>
         <if test="offset >= 0">
             LIMIT #{offset}, #{size}
         </if>

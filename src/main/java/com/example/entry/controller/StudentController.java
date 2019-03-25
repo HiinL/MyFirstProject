@@ -73,7 +73,7 @@ public class StudentController {
      */
     @PostMapping("querryList")
     public String querryList(
-            @RequestParam("qq") String qq
+            @RequestParam(value = "qq",required = false) String qq
     ,@RequestParam("pageIndex") int pageIndex,@RequestParam("pageSize") int pageSize){
 
         return ResultUtil.OK(studentService.queryStudentList(qq,pageIndex,pageSize));
