@@ -46,7 +46,7 @@
     </select>
 
     <select id="countByQQ" resultType="java.lang.Integer" >
-    SELECT COUNT(ID) FROM STUDENT
+    SELECT COUNT(ID) FROM STUDENT T
     WHERE  1=1
     <if test="qq!=null">
         and  T.QQ LIKE CONCAT('%','${qq}','%')
