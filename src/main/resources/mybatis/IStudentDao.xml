@@ -37,8 +37,11 @@
         SELECT T.*,AU.NAME AS createName FROM STUDENT T
         LEFT JOIN ADMIN_USER AU ON T.CREATE_ID = AU.ID
         WHERE  1=1
-        <if test="qq!=null">
-            and  T.QQ LIKE CONCAT('%','${qq}','%')
+        <if test="qq!=null and qq !=''">
+            AND  T.QQ LIKE CONCAT('%','${qq}','%')
+        </if>
+        <if test="role == 1">
+          AND T.CREATE_ID = #{createId}
         </if>
         <if test="offset >= 0">
             LIMIT #{offset}, #{size}
@@ -48,8 +51,11 @@
     <select id="countByQQ" resultType="java.lang.Integer" >
     SELECT COUNT(ID) FROM STUDENT T
     WHERE  1=1
-    <if test="qq!=null">
+    <if test="qq!=null and qq !=''">
         and  T.QQ LIKE CONCAT('%','${qq}','%')
     </if>
+     <if test="role == 1">
+            AND T.CREATE_ID = #{createId}
+     </if>
     </select>
 </mapper>

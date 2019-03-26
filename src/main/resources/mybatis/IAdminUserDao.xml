@@ -3,8 +3,8 @@
 <mapper namespace="com.example.entry.dao.IAdminUserDao">
 
     <insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="com.example.entry.pojo.vo.AdminUserVO">
-        INSERT INTO ADMIN_USER(ID, NAME,ACCOUNT,PWD,CREATE_TIME)
-        VALUES( #{id} ,#{name},#{account},#{pwd},NOW() )
+        INSERT INTO ADMIN_USER(ID, NAME,ACCOUNT,PWD,CREATE_TIME,ROLE)
+        VALUES( #{id} ,#{name},#{account},#{pwd},NOW(),0 )
     </insert>
 
     <delete id="delById" parameterType="string">
@@ -27,5 +27,7 @@
         SELECT * FROM ADMIN_USER WHERE ACCOUNT=#{account}
     </select>
 
-
+    <select id="queryById" resultType="com.example.entry.pojo.vo.AdminUserVO">
+        SELECT * FROM ADMIN_USER WHERE ID=#{id}
+    </select>
 </mapper>

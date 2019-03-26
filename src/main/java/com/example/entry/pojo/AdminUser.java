@@ -35,4 +35,7 @@ public class AdminUser implements Serializable {
 
     /**创建时间*/
     private Date createTime;
+
+    /**规则*/
+    private Integer role;
 }

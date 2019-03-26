@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface IStudentDao extends BaseMapper<StudentVO> {
 
-    List<StudentVO> queryStudentList(@Param("qq") String qq, @Param("offset") int offset, @Param("size") int size);
+    List<StudentVO> queryStudentList(@Param("role") Integer role,@Param("createId") String createId,@Param("qq") String qq, @Param("offset") int offset, @Param("size") int size);
 
     int delById(@Param("id") String id);
 
@@ -22,5 +22,5 @@ public interface IStudentDao extends BaseMapper<StudentVO> {
 
     int add(StudentVO vo);
 
-    int countByQQ(@Param("qq") String qq);
+    int countByQQ(@Param("role") Integer role,@Param("createId") String createId,@Param("qq") String qq);
 }

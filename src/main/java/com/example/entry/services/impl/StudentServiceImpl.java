@@ -1,6 +1,9 @@
 package com.example.entry.services.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.example.entry.dao.IAdminUserDao;
 import com.example.entry.dao.IStudentDao;
+import com.example.entry.pojo.vo.AdminUserVO;
 import com.example.entry.pojo.vo.StudentVO;
 import com.example.entry.services.IStudentService;
 import com.example.entry.util.CommonUtil;
@@ -12,6 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
+import static com.example.entry.dao.IAdminUserDao.*;
 
 /**
  * @ClassName
@@ -26,11 +31,16 @@ public class StudentServiceImpl  implements IStudentService {
     @Autowired
     IStudentDao studentDao;
 
+    @Autowired
+    IAdminUserDao adminUserDao;
+
     @Override
-    public Map<String,Object> queryStudentList(String qq, int pageIndex, int pageSize) {
+    public Map<String,Object> queryStudentList( String createId,String qq, int pageIndex, int pageSize) {
+        AdminUserVO vo = adminUserDao.queryById(createId);
         Map<String,Object> map = new HashMap<>();
-        List<StudentVO> vos =studentDao.queryStudentList(qq, CommonUtil.getPageOffset(pageIndex,pageSize), pageSize);
-       int pageCount = studentDao.countByQQ(qq);
+
+        List<StudentVO> vos =studentDao.queryStudentList(vo.getRole(),createId,qq, CommonUtil.getPageOffset(pageIndex,pageSize), pageSize);
+        int pageCount = studentDao.countByQQ(vo.getRole(),createId,qq);
         map.put("data",vos);
         map.put("pageCount",pageCount);
         return map;

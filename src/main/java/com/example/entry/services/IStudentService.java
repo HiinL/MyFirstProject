@@ -5,7 +5,7 @@ import java.util.Map;
 public interface IStudentService {
 
     /**查询学员列表*/
-    Map<String,Object> queryStudentList(String qq, int pageIndex, int pageSize);
+    Map<String,Object> queryStudentList( String creatId,String qq, int pageIndex, int pageSize);
 
     /**删除学员*/
     int del(String id);

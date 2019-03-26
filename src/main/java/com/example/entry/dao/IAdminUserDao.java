@@ -18,4 +18,6 @@ public interface IAdminUserDao extends BaseMapper<AdminUserVO> {
             , @Param("account") String account);
 
     int add(AdminUserVO vo);
+
+    AdminUserVO queryById(@Param("id") String id);
 }
